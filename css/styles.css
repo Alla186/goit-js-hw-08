@@ -1,0 +1,19 @@
+
+
+ .container {
+     display: flex;
+     justify-content: space-around;
+ }
+ ul {
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+     gap: 25px;
+     user-select: none;
+     list-style: none;
+ }
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

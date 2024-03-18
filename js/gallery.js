@@ -64,9 +64,10 @@ const images = [
   },
 ];
 
-const container = document.querySelector("gallery");
+const container = document.querySelector(".gallery");
 container.insertAdjacentHTML("beforeend", createMarkup(images));
-createMarkup(images);
+container.addEventListener("click", handleGalleryClick);
+
 function createMarkup(arr) {
     return arr.map(({ preview, original, description }) => `
         <li class="gallery-item">
@@ -77,10 +78,27 @@ function createMarkup(arr) {
             data-source="${original}"
             alt="${description} "
             width="360"
-
+            height="300"
           />
         </a>
       </li>
     `).join("")
-} 
-console.log(helo)
+}
+function handleGalleryClick(event) {
+  event.preventDefault();
+  if (event.target === event.currentTarget) {
+    return
+  }
+  const gallery = event.target.dataset.source;
+ 
+  const instance = basicLightbox.create(`
+      <img src="${gallery}" width="1112" height="640">
+  `);
+
+  instance.show();
+}
+function modalClose(event) {
+  if (event.key === "Escape") {
+    instance.close();
+  }
+}
